@@ -11,10 +11,6 @@ quiz_questions = [
 ]
 
 
-def guess_number():
-    print("number game")
-
-
 class Question:
     def __init__(self, prompt, answer):
         self.prompt = prompt
@@ -29,6 +25,55 @@ questions = [
 ]
 
 
+def intro():
+    """
+    Intro to the game, presents player with first choice
+    """
+    player = input("What is your name, traveller? ")
+    answer = input(f"Hello {player}, are you ready to start your journey? (Y/N) ")
+
+    while answer == "y" or "n":
+        if answer == "y":
+            print(f"It's {clock}, you're in Amsterdam")
+            print("you just realised you were supposed to be in Dublin")
+            print("for a family event in 8 hours! \n")
+
+            first_choice = input("You better hurry up, how do you want to get to the airport, bus or taxi? ")
+
+            while first_choice == "bus" or "taxi":
+                if first_choice == "bus":
+                    take_bus()
+                    break
+                elif first_choice == "taxi":
+                    take_taxi()
+                    break
+                else:
+                    print("Please choose bus or taxi")
+                    first_choice = input("You better hurry up, how do you want to get to the airport, bus or taxi? ")
+            break
+        elif answer == "n":
+            print("That's understandable, flying isn't what it used to be anyway")
+            quit()
+        else:
+            print("Please type 'y' or 'n'")
+            answer = input(f"Hello {player}, are you ready to start your journey? (Y/N) ")
+    
+        
+def take_bus():
+    """
+    Runs if player chooses the bus path.
+    """
+    print("You took a bus")
+    run_quiz(questions)
+
+
+def take_taxi():
+    """
+    Runs if player chooses the taxi path.
+    """
+    print("You took a taxi")
+
+
 def run_quiz(questions):
     """
     Runs the quiz game when player chooses the bus path.
@@ -41,48 +86,8 @@ def run_quiz(questions):
     print(f"You got {score} out of {len(questions)}")
 
 
-def take_bus():
-    """
-    Runs if player chooses the bus path.
-    """
-    print("You took a bus")
-    run_quiz(questions)
-    print("Well done, take this free hand sanitizer and enjoy your trip!")
-    guess_number()
+def guess_number():
+    print("number game")
 
 
-def take_taxi():
-    """
-    Runs if player chooses the taxi path.
-    """
-    print("You took a taxi")
-    guess_number()
-
-
-def intro():
-    """
-    Intro to the game, presents player with first choice
-    """
-    print(f"It's {clock}, you're in Amsterdam")
-    print("you just realised you were supposed to be in Dublin")
-    print("for a family event in 8 hours! \n")
-    FirstChoice = input("You better hurry up, how do you want to get to the airport, bus or taxi? ").lower()
-    if FirstChoice == 'bus':
-        take_bus()
-    else:
-        take_taxi()
-
-
-player = input("What is your name, traveller? ")
-answer = input(f"Hello {player}, are you ready to start your journey? (Y/N) ")
-
-while answer == "y" or "n":
-    if answer == "y":
-        intro()
-    elif answer == "n":
-        print("That's understandable, flying isn't what it used to be anyway")
-        quit()
-    else:
-        print("Please type 'y' or 'n'")
-        answer = input(f"Hello {player}, are you ready to start your journey? (Y/N) ")
-
+intro()
