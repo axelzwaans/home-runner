@@ -38,6 +38,12 @@ def intro():
     """
     print("\n")
     global player
+    print_slow("Welcome to...\n")
+    print("\n")
+    print_slow("====================\n")
+    print_slow("    HOME RUNNER\n")
+    print_slow("====================\n")
+    print("\n")
     print_slow("What is your name, traveller? ")
     player = input()
     print_slow(f"Hello {player}, are you ready to start your journey? (y/n) ")
@@ -46,10 +52,12 @@ def intro():
     while answer == "y" or "n":
         if answer == "y":
             print("\n")
-            print_slow(f"It's {clock}, you're in Amsterdam\n")
-            print_slow("you just realised you were supposed to be in Dublin \n")
-            print_slow("for a family event in 8 hours! \n")
-
+            print_slow(f"It's {clock}, you just woke up in your bedroom somewhere in Europe\n")
+            print_slow("As you slowly get up, you realise something...\n")
+            print_slow("You were supposed to be in Dublin for a family event!\n")
+            print_slow("Which starts in 7 hours!\n")
+            print_slow("If you don't make it, you'll be in heeps of trouble...\n")
+            print("\n")
             print_slow("You better hurry up, how do you want to get to the airport, bus or taxi? ")
             first_choice = input().lower()
 
@@ -62,7 +70,7 @@ def intro():
                     break
                 else:
                     print("Please choose 'bus' or 'taxi'")
-                    first_choice = input("You better hurry up, how do you want to get to the airport, bus or taxi? ")
+                    first_choice = input("You better hurry up, how do you want to get to the airport, bus or taxi? ").lower()
             break
         elif answer == "n":
             print("That's understandable, flying isn't what it used to be anyway")
@@ -168,10 +176,7 @@ def quiz_game(questions):
         print_slow("You realise you're stuck to the bus!\n")
         print_slow("You're now doomed to ride this bus for eternity...\n")
         print_slow("And you'll never make it to your family meeting...\n")
-        print("\n")
-        print_slow("==========================GAME OVER==========================")
-        print("\n")
-        quit()
+        game_over()
     else:
         print("\n")
         print_slow("The man is grateful that he's now able to log into his Disney+ account\n")
@@ -192,24 +197,48 @@ def numbers_game():
         guesses += 1
         player_guess = input("Guess a number: ")
         if guesses == 3:
-            print("You are blocked")
-            quit()
+            print("\n")
+            print_slow("Your card is blocked!")
+            print("\n")
+            print_slow("You slowly look up to the taxi driver\n")
+            print_slow("He knows you can't pay the fare\n")
+            print("\n")
+            print_slow('Taxi driver: "I am taking you to the cops!"\n')
+            print_slow('Taxi driver: "They will know what to with you"\n')
+            print("\n")
+            print_slow("As the driver speeds away\n")
+            print_slow("You look back towards the airport\n")
+            print_slow("And realise you won't see your family for a while...\n")
+            print_slow("You think to yourself...\n")
+            print_slow("...\n")
+            print_slow("...\n")
+            print_slow("...\n")
+            print_slow("This sucks but at least it's a good excuse to get out of a family event!\n")
+            game_over()
         else:
             if player_guess.isdigit(): 
                 player_guess = int(player_guess)
-
             else:
                 print("Please type a number")
                 continue
 
             if player_guess == random_number:
                 break
-            elif player_guess > 52:
+            elif player_guess > 5:
                 print("Please type a number between 0 and 5")
             else:
                 print("Incorrect pincode, please try again!")
                 continue
-    print(f"Pin correct! You got it in {guesses} guesses")                
+    print(f"Pin correct! You got it in {guesses} guesses")
+
+def battle_game():
+    print("battle game")
+
+def game_over():
+    print("\n")
+    print_slow("==========================GAME OVER==========================")
+    print("\n")
+    quit()
 
 
-numbers_game()
+intro()
