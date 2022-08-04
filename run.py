@@ -186,6 +186,7 @@ def quiz_game(questions):
         print_slow("As the bus pulls into the airport, the man quickly runs to the door and runs away\n")
         print_slow("You leave the bus and make your way to the ticket desk\n")
         print("\n")
+        battle_game()
 
 
 def numbers_game():
@@ -230,9 +231,117 @@ def numbers_game():
                 print("Incorrect pincode, please try again!")
                 continue
     print(f"Pin correct! You got it in {guesses} guesses")
+    battle_game()
+
 
 def battle_game():
-    print("battle game")
+    class Player():
+        def Karatechop(self):
+            kchop = random.randint(0, 15)
+            return kchop
+
+        def Judokick(self):
+            jkick = random.randint(20, 40)
+            return jkick
+
+        def heal(self):
+            healing = random.randint(5, 25)
+            return healing
+
+    def first_go():
+        go = random.randint(0, 2)
+        if go == 0:
+            return 'Comp'
+        else:
+            return player
+
+
+    player = 'Axel'
+    player_hp = 100
+    player_energy = 0
+    comp_hp = 100
+    comp_energy = 0
+
+    turn = first_go()
+
+    playermove = Player()
+    comp = Player()
+
+
+    while player_hp > 0 and comp_hp > 0:
+        print(f"\n{turn}'s turn")
+        if turn != 'Comp':
+            action = int(input(f'{player}, please choose an action:\n1) Karatechop\n2) Judokick\n3) Heal\n'))
+            if action == 1:
+                player_kchop = playermove.Karatechop()
+                comp_hp = comp_hp - player_kchop
+                player_energy += 10
+                time.sleep(1)
+                print(f'\n{player} just did {player_kchop} damage!')
+                print(f'{player} now has {player_hp} health and {player_energy} energy')
+                time.sleep(1)
+                print(f'The computer now has {comp_hp} health and {comp_energy} energy')
+                turn = 'Comp'
+            elif action == 2 and player_energy >= 20:
+                player_jkick = playermove.Judokick()
+                comp_hp = comp_hp - player_jkick
+                player_energy -= 20
+                time.sleep(1)
+                print(f'\n{player} just did {player_jkick} damage!')
+                print(f'{player} now has {player_hp} health and {player_energy} energy')
+                time.sleep(1)
+                print(f'The computer now has {comp_hp} health and {comp_energy} energy')
+                turn = 'Comp'
+            elif action == 3 and player_energy >= 15:
+                player_heal = playermove.heal()
+                player_hp += player_heal
+                player_energy -= 15
+                time.sleep(1)
+                print(f'\n{player} just healed themselves for {player_heal}')
+                print(f'{player} has {player_hp} health and {player_energy} energy')
+                turn = 'Comp'
+            elif action == 2 or action == 3 and player_energy < 15:
+                print(f'\n{player} you have {player_hp} and {player_energy} energy')
+                print(f'{player} your energy is too low, please choose 1) Normal attack: ')
+            else:
+                print("Please enter a correct action")
+        else:
+            if comp_energy >= 20:
+                comp_jkick = comp.Judokick()
+                player_hp = player_hp - comp_jkick
+                comp_energy -= 20
+                time.sleep(1)
+                print(f'\nThe computer just did {comp_jkick} damage')
+                print(f'{player} now has {player_hp} health and {player_energy} energy')
+                time.sleep(1)
+                print(f'The computer now has {comp_hp} health and {comp_energy} energy')
+                turn = player
+            elif comp_hp < 50 and comp_energy >= 15:
+                comp_healing = comp.heal()
+                comp_hp += comp_healing
+                comp_energy -= 15 
+                time.sleep(1)
+                print(f'\nThe comp has healed themselves for {comp_healing}')
+                print(f'{player} now has {player_hp} health and {player_energy} energy')
+                time.sleep(1)
+                print(f'The computer now has {comp_hp} health and {comp_energy} energy')
+                turn = player
+            else:
+                comp_norm_attack = comp.Karatechop()
+                player_hp = player_hp - comp_norm_attack
+                comp_energy += 10
+                time.sleep(1)
+                print(f'\nComp just did {comp_norm_attack} damage!')
+                print(f'\n{player} now has {player_hp} health and {player_energy} energy')
+                print(f'The computer now has {comp_hp} health and {comp_energy} energy')
+                turn = player
+
+    if player_hp <= 0:
+        print('The computer has won this round!')
+    elif comp_hp <= 0:
+        print(f'\n{player} has won this round!')    
+
+
 
 def game_over():
     print("\n")
@@ -241,4 +350,4 @@ def game_over():
     quit()
 
 
-intro()
+battle_game()
