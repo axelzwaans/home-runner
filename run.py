@@ -230,8 +230,31 @@ def numbers_game():
             else:
                 print("Incorrect pincode, please try again!")
                 continue
-    print(f"Pin correct! You got it in {guesses} guesses")
-    battle_game()
+    print_slow("PIN CORRECT\n")
+    print_slow(f"You can't believe it, you got it in {guesses} guesses!\n")
+    print_slow("You say goodbye to the chatty taxi driver\n")
+    print_slow("And you make your way into the airport...\n")
+    print_slow("Luckily, you booked a ticket during the taxi ride,\n")
+    print_slow("So you go straight through to your gate.\n")
+    print_slow("But first you need to get through security!\n")
+    print_slow("You check to see which line might be quicker.\n")
+    print_slow("The line on the left seems to be going quicker...\n")
+    print_slow("But the line on the right seems to have less people in it...\n")
+    print("\n")
+    
+    print_slow("Which line will you choose? (left/right) ")
+    which_line = input().lower()
+    while which_line == 'left' or 'right':
+        if which_line == 'left':
+            print_slow("You chose left\n")
+            battle_game()
+            break
+        elif which_line == 'right':
+            print_slow("You chose right\n")
+            break
+        else:
+            print("\nPlease type 'left' or 'right'\n")
+            which_line = input().lower()
 
 
 def battle_game():
@@ -256,7 +279,6 @@ def battle_game():
             return player
 
 
-    player = 'Axel'
     player_hp = 100
     player_energy = 0
     comp_hp = 100
@@ -350,4 +372,4 @@ def game_over():
     quit()
 
 
-battle_game()
+intro()
