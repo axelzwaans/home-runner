@@ -1,6 +1,10 @@
 import sys, random, time
 from time import gmtime, strftime
 clock = strftime("%a, %d %b %Y and the time is %H:%M:%S", gmtime())
+from random import randrange
+import settings
+import game_text
+
 
 
 def print_slow(str):
@@ -69,7 +73,7 @@ def intro():
                     take_taxi()
                     break
                 else:
-                    print("Please choose 'bus' or 'taxi'")
+                    print("Please choose 'bus' or 'taxi' ")
                     first_choice = input("You better hurry up, how do you want to get to the airport, bus or taxi? ").lower()
             break
         elif answer == "n":
@@ -77,35 +81,14 @@ def intro():
             quit()
         else:
             print("Please type 'y' or 'n'")
-            answer = input(f"Hello {player}, are you ready to start your journey? (y/n) ")
+            answer = input(f"Hello {player}, are you ready to start your journey? (y/n) ").lower()
     
         
 def take_bus():
     """
     Runs if player chooses the bus path.
     """
-    print("\n")
-    print_slow("You took a bus!\n")
-    print("\n")
-    print_slow("You sit down next to a peculiar looking gentleman\n")
-    print_slow("You notice the man is staring at you, but you don't respond...\n")
-    print_slow("As the bus makes its way to the airport, you continue to ignore the staring man...\n")
-    print_slow("Finally, you decided you've had enough, and you confront him!\n")
-    print("\n")
-    print_slow(f'{player}: "Can I help you???"\n')
-    print_slow('Man: "..."\n')
-    print_slow('Man: "..."\n')
-    print_slow('Man: "Are you talking to me?"\n')
-    print_slow(f'{player}: "Yes obviously I am talking to you! You are staring at me!"\n')
-    print_slow('Man: "Oh yes, I was, but I was really just wondering something..."\n')
-    print_slow(f'{player}: "Wondering what?"\n')
-    print_slow('Man: "Well, you look very smart, and I need help with something"\n')
-    print_slow('Man: "I forgot the security questions I entered for this website, and now I cannot log in "\n')
-    print_slow(f"{player}: We've all been there...\n")
-    print_slow('Man: "Would you mind helping me out?"\n')
-    print_slow(f'{player}: *reluctantly takes headphones out of ears* "sure..."\n')
-    print_slow('Man: "Thanks! Here are the questions!...')
-    print("\n")
+    take_bus_text()
     quiz_game(questions)
 
 
@@ -157,6 +140,7 @@ def quiz_game(questions):
     Runs the quiz game when player chooses the bus path.
     """
     score = 0
+    random.shuffle(questions)
     for question in questions:
         while True:
             answer = input(question.prompt)
@@ -364,12 +348,23 @@ def battle_game():
         print(f'\n{player} has won this round!')    
 
 
-
 def game_over():
     print("\n")
     print_slow("==========================GAME OVER==========================")
     print("\n")
+    print_slow("PLAY AGAIN? (y/n) ")
+    play_again = input().lower()
+
+    while play_again == "y" or "n":
+        if play_again == "y":
+            intro()
+            break
+        elif play_again == "n":
+            quit()
+        else:
+            print_slow("Please type 'y' or 'n' ")
+            play_again = input().lower()
     quit()
 
 
-intro()
+quiz_game(questions)

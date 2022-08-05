@@ -1,11 +1,17 @@
+import settings
 import sys, random, time
-from run.py import run.py
+
 
 def print_slow(str):
     for letter in str:
         sys.stdout.write(letter)
         sys.stdout.flush()
         time.sleep(0.04)
+
+
+def init():
+    global player
+    global take_bus_text()
 
 
 def take_bus_text():
@@ -25,9 +31,10 @@ def take_bus_text():
     print_slow('Man: "Oh yes, I was, but I was really just wondering something..."\n')
     print_slow(f'{player}: "Wondering what?"\n')
     print_slow('Man: "Well, you look very smart, and I need help with something"\n')
-    print_slow('Man: "I forgot the security questions I entered for this website, and now I cannot log in "\n')
+    print_slow('Man: "I forgot the security questions for my Disney+ account, and now I cannot log in "\n')
     print_slow(f"{player}: We've all been there...\n")
     print_slow('Man: "Would you mind helping me out?"\n')
     print_slow(f'{player}: *reluctantly takes headphones out of ears* "sure..."\n')
-    print_slow('Man: "Thanks! Here are the questions!...')
+    print_slow('Man: "Thanks! Here are the questions!...\n')
+    print_slow('Man: "You will need to get at least 2 out of 4 right!"\n')
     print("\n")
