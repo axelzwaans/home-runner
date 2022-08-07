@@ -2,9 +2,7 @@ import sys, random, time
 from time import gmtime, strftime
 clock = strftime("%a, %d %b %Y and the time is %H:%M:%S", gmtime())
 from random import randrange
-import settings
-import game_text
-
+from game_chat import print_bus_text
 
 
 def print_slow(str):
@@ -18,7 +16,13 @@ quiz_questions = [
     "What is the collective noun for a group of pandas?\n(a) A group\n(b) A bunch \n(c) An embarrassment\n\n",
     "Which country do kiwifruit originate from?\n(a) New Zealand\n(b) China\n(c) Australia\n\n",
     "What is a Rocky Mountain oyster?\n(a) Bull testicles\n(b) An oyster from Rocky Mountain\n(c) A fish\n\n",
-    "What is the correct term for a question mark combined with an exclamation mark?\n(a) An exlamuestion mark\n(b) An interrobang\n(c) An interrogamation\n\n"
+    "What is the correct term for a question mark combined with an exclamation mark?\n(a) An exlamuestion mark\n(b) An interrobang\n(c) An interrogamation\n\n",
+    "What is the highest-grossing Broadway show of all time?\n(a) The Lion King\n(b) Wicked\n(c) Hamilton\n\n",
+    "On average, how many seeds are located on the outside of a strawberry?\n(a) 100\n(b) 200\n(c) 500\n\n",
+    "In what country do more than half of people believe in elves?\n(a) Norway\n(b) Russia\n(c) Iceland\n\n",
+    "What is yellowtail fish called in Japanese?\n(a) Ahi\n(b) Ikura\n(c) Hamachi\n\n",
+    "Who was the first Disney Princess?\n(a) Snow White\n(b) Cinderella\n(c) Jasmine\n\n",
+    "What’s the heaviest organ in the human body?\n(a) Brain\n(b) Skin\n(c) Liver\n\n",
 ]
 
 
@@ -32,7 +36,13 @@ questions = [
     Question(quiz_questions[0], "c"),
     Question(quiz_questions[1], "b"),
     Question(quiz_questions[2], "a"),
-    Question(quiz_questions[3], "b")
+    Question(quiz_questions[3], "b"),
+    Question(quiz_questions[4], "a"),
+    Question(quiz_questions[5], "b"),
+    Question(quiz_questions[6], "c"),
+    Question(quiz_questions[7], "c"),
+    Question(quiz_questions[8], "a"),
+    Question(quiz_questions[9], "c"),
 ]
 
 
@@ -87,8 +97,8 @@ def intro():
 def take_bus():
     """
     Runs if player chooses the bus path.
-    """
-    take_bus_text()
+    """ 
+    print_bus_text()
     quiz_game(questions)
 
 
@@ -140,8 +150,8 @@ def quiz_game(questions):
     Runs the quiz game when player chooses the bus path.
     """
     score = 0
-    random.shuffle(questions)
-    for question in questions:
+    random_questions = random.sample(questions, 3)
+    for question in random_questions:
         while True:
             answer = input(question.prompt)
             if validate_answer(answer):
@@ -149,8 +159,8 @@ def quiz_game(questions):
                     score += 1
                 break
     print("\n")
-    print_slow(f"You got {score} out of {len(questions)} right!")
-    if int(score) != 4:
+    print_slow(f"You got {score} out of {len(random_questions)} right!")
+    if int(score) != 2:
         print("\n")
         print_slow('Man: "You fool! Thanks to you I have been locked out of my Disney+ account forever!"\n')
         print_slow('Man: "As punishment, you shall never leave this bus!"\n')
@@ -367,4 +377,4 @@ def game_over():
     quit()
 
 
-quiz_game(questions)
+take_bus()

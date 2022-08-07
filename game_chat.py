@@ -1,20 +1,8 @@
-import settings
-import sys, random, time
+from run import player
+from run import print_slow
 
 
-def print_slow(str):
-    for letter in str:
-        sys.stdout.write(letter)
-        sys.stdout.flush()
-        time.sleep(0.04)
-
-
-def init():
-    global player
-    global take_bus_text()
-
-
-def take_bus_text():
+def print_bus_text():
     print("\n")
     print_slow("You took a bus!\n")
     print("\n")
@@ -36,5 +24,5 @@ def take_bus_text():
     print_slow('Man: "Would you mind helping me out?"\n')
     print_slow(f'{player}: *reluctantly takes headphones out of ears* "sure..."\n')
     print_slow('Man: "Thanks! Here are the questions!...\n')
-    print_slow('Man: "You will need to get at least 2 out of 4 right!"\n')
+    print_slow('Man: "You will need to get at least 2 out of 3 right!"\n')
     print("\n")
