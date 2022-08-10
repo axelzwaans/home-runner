@@ -2,7 +2,7 @@ import sys, random, time
 from time import gmtime, strftime
 clock = strftime("%a, %d %b %Y and the time is %H:%M:%S", gmtime())
 from random import randrange
-from game_chat import print_bus_text
+from constants import *
 
 
 def print_slow(str):
@@ -65,14 +65,7 @@ def intro():
 
     while answer == "y" or "n":
         if answer == "y":
-            print("\n")
-            print_slow(f"It's {clock}, you just woke up in your bedroom somewhere in Europe\n")
-            print_slow("As you slowly get up, you realise something...\n")
-            print_slow("You were supposed to be in Dublin for a family event!\n")
-            print_slow("Which starts in 7 hours!\n")
-            print_slow("If you don't make it, you'll be in heeps of trouble...\n")
-            print("\n")
-            print_slow("You better hurry up, how do you want to get to the airport, bus or taxi? ")
+            print_slow(TEXT_1 % clock)
             first_choice = input().lower()
 
             while first_choice == "bus" or "taxi":
@@ -87,7 +80,7 @@ def intro():
                     first_choice = input("You better hurry up, how do you want to get to the airport, bus or taxi? ").lower()
             break
         elif answer == "n":
-            print("That's understandable, flying isn't what it used to be anyway")
+            print("That's understandable, travelling isn't what it used to be anyway")
             quit()
         else:
             print("Please type 'y' or 'n'")
@@ -98,7 +91,7 @@ def take_bus():
     """
     Runs if player chooses the bus path.
     """ 
-    print_bus_text()
+    print_slow(TAKE_BUS_TEXT % player)
     quiz_game(questions)
 
 
@@ -106,29 +99,7 @@ def take_taxi():
     """
     Runs if player chooses the taxi path.
     """
-    print("\n")
-    print("You took a taxi")
-    print("\n")
-    print_slow(f'{player}: "To the airport please, and step on it!"\n')
-    print_slow('Taxi driver: "Speed limit is 55mph..."\n')
-    print_slow(f'{player}: "Yeah okay never mind..."\n')
-    print("\n")
-    print_slow("As you make your way to the airport\n")
-    print_slow("The driver seems to be a chatty one!\n")
-    print_slow("So you smile and nod and look out the window\n")
-    print_slow("As the city landscape passes you by...\n")
-    print("\n")
-    print_slow('Taxi driver: "Here we are!"\n')
-    print_slow(f'{player}: "Great, how much will that be?"\n')
-    print_slow('Taxi driver: "55 euros please"\n')
-    print("\n")
-    print_slow("You slide your credit card into the machine\n")
-    print_slow("And you realise you forgot the last digit of your pin code\n")
-    print_slow("You start to sweat\n")
-    print_slow("If you guess wrong, the taxi driver will probably drive you to a police station\n")
-    print_slow("You have 3 guesses before your card gets blocked!\n")
-    print("\n")
-    print_slow(f'{player}: "Here goes nothing, I am sure that it is a number between 0 and 5..."\n')
+    print_slow(TAKE_TAXI_TEXT % player)
     numbers_game()
 
 
@@ -160,7 +131,7 @@ def quiz_game(questions):
                 break
     print("\n")
     print_slow(f"You got {score} out of {len(random_questions)} right!")
-    if int(score) != 2:
+    if int(score) != 3:
         print("\n")
         print_slow('Man: "You fool! Thanks to you I have been locked out of my Disney+ account forever!"\n')
         print_slow('Man: "As punishment, you shall never leave this bus!"\n')
@@ -172,43 +143,20 @@ def quiz_game(questions):
         print_slow("And you'll never make it to your family meeting...\n")
         game_over()
     else:
-        print("\n")
-        print_slow("The man is grateful that he's now able to log into his Disney+ account\n")
-        print("\n")
-        print_slow('Man: "Now I can catch up on my favorite cartoons! Thank you!"\n')
-        print("\n")
-        print_slow("As the bus pulls into the airport, the man quickly runs to the door and runs away\n")
-        print_slow("You leave the bus and make your way to the ticket desk\n")
-        print("\n")
+        print_slow(QUIZ_GAME_WIN)
         battle_game()
 
 
 def numbers_game():
     print("\n")
-    random_number = random.randint(0, 5)
+    random_number = random.randint(0, 4)
     guesses = 0
 
     while True:
         guesses += 1
         player_guess = input("Guess a number: ")
         if guesses == 3:
-            print("\n")
-            print_slow("Your card is blocked!")
-            print("\n")
-            print_slow("You slowly look up to the taxi driver\n")
-            print_slow("He knows you can't pay the fare\n")
-            print("\n")
-            print_slow('Taxi driver: "I am taking you to the cops!"\n')
-            print_slow('Taxi driver: "They will know what to with you"\n')
-            print("\n")
-            print_slow("As the driver speeds away\n")
-            print_slow("You look back towards the airport\n")
-            print_slow("And realise you won't see your family for a while...\n")
-            print_slow("You think to yourself...\n")
-            print_slow("...\n")
-            print_slow("...\n")
-            print_slow("...\n")
-            print_slow("This sucks but at least it's a good excuse to get out of a family event!\n")
+            print_slow(NUMBERS_GAME_LOSE)
             game_over()
         else:
             if player_guess.isdigit(): 
@@ -224,18 +172,10 @@ def numbers_game():
             else:
                 print("Incorrect pincode, please try again!")
                 continue
-    print_slow("PIN CORRECT\n")
-    print_slow(f"You can't believe it, you got it in {guesses} guesses!\n")
-    print_slow("You say goodbye to the chatty taxi driver\n")
-    print_slow("And you make your way into the airport...\n")
-    print_slow("Luckily, you booked a ticket during the taxi ride,\n")
-    print_slow("So you go straight through to your gate.\n")
-    print_slow("But first you need to get through security!\n")
-    print_slow("You check to see which line might be quicker.\n")
-    print_slow("The line on the left seems to be going quicker...\n")
-    print_slow("But the line on the right seems to have less people in it...\n")
-    print("\n")
-    
+    print_slow(NUMBERS_GAME_WIN % guesses)
+    battle_game()
+
+def battle_game():
     print_slow("Which line will you choose? (left/right) ")
     which_line = input().lower()
     while which_line == 'left' or 'right':
@@ -376,5 +316,4 @@ def game_over():
             play_again = input().lower()
     quit()
 
-
-take_bus()
+numbers_game()
