@@ -2,7 +2,7 @@ import sys, random, time
 from time import gmtime, strftime
 clock = strftime("%a, %d %b %Y and the time is %H:%M:%S", gmtime())
 from random import randrange
-from constants import *
+from constants import TEXT_1, TAKE_BUS_TEXT, TAKE_TAXI_TEXT, QUIZ_GAME_WIN, NUMBERS_GAME_WIN, NUMBERS_GAME_LOSE
 
 
 def print_slow(str):
@@ -316,4 +316,4 @@ def game_over():
             play_again = input().lower()
     quit()
 
-numbers_game()
+intro()
