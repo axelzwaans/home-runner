@@ -1,12 +1,12 @@
 # Home Runner
 
-'Home Runner' is a text-based adventure game. The user starts the game at home, and the goal is to reach the airplane by completing challenges on the way.
+'Home Runner' is a mini text-based adventure game. The user starts the game at home, and the goal is to reach the airplane by completing challenges on the way.
 
 This is a python terminal game, which runs in the Code Institute mock terminal on Heroku.
 
-RESPONSIVE IMAGE
+![am_i_responsive](assets/images_readme/am_i_responsive.png)
 
-Live app link HERE.
+Live app link [HERE](https://home-runner.herokuapp.com/).
 
 # How to play
 
@@ -72,7 +72,7 @@ I have taken the following steps to ensure game functionality:
 
 # Bugs
 
-There were a few bugs came accross while making this project:
+There were a few bugs came across while making this project:
 
 - Initially, I had issues with data validation. To fix this, I looped the questions to prompt the user to enter data in a valid format by wrapping my 'if' statement in a 'while' loop.
 - When importing strings from the 'constants' module, I kept getting the error message 'IndexError: Replacement index 1 out of range for positional args tuple', and the 'player' variable was not getting passed to the string. I solved this by using the format() method, and numbering the index of the placeholder.
@@ -92,4 +92,8 @@ This project was deployed using Code Institute's mock terminal for Heroku.
 
 # Credits
 
+- For coding guidance to set up the quiz game I used [this youtube tutorial](https://www.youtube.com/watch?v=SgQhwtIoQ7o&t=161s)
+- For coding guidance to set up the battle game I used [this youtube tutorial](https://www.youtube.com/watch?v=k87EDFLZS1o&t=342s)
+- For general coding related questions I used [Stackoverflow](https://stackoverflow.com/) and [w3schools](https://www.w3schools.com/)
+- Code Institute for the deployment terminal
 
